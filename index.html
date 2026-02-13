@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's Day Mai 💗💗💗</title>
+    <link rel="stylesheet" href="quotes.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+
+<body>
+     <audio id="bg-music" preload="auto"></audio>
+    <button id="music-btn" class="music-btn">
+    <span class="material-symbols-outlined">music_note</span>
+</button>
+    <div class="main">
+        <h2 class="danhtang">💝 Dành tặng em – người anh yêu  💝</h2>
+
+        <div class="container">
+            <a href="valentine.html" class="day-link" data-date="2025-02-14">
+                <div class="valentine-day day">
+                    <div class="icon">
+                        <lord-icon src="https://cdn.lordicon.com/etgnxeer.json" trigger="hover"></lord-icon>
+                    </div>
+                    <div class="info">
+                        <h1 class="day-name">Valentine's Day</h1>
+                        <p class="date">Feb 14</p>
+                        <div class="countdown" id="countdown-valentine"></div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="copyright-container">
+            <!-- <h3 class="copyright">Được tạo với ❤️ bởi Hà dành cho Mai</h3> -->
+        </div>
+    </div>
+
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
+  <script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    const music = document.getElementById('bg-music');
+    const musicBtn = document.getElementById('music-btn');
+
+    const playlist = [
+        "./assets/Until I Found You.mp3",
+       "./assets/A_Thousand_Years-528635.mp3",
+       "./assets/Perfect.mp3",
+   
+    ];
+
+    let currentSong = 0;
+    let musicStarted = false;
+
+    function playSong(index) {
+        music.src = playlist[index];
+        music.volume = 0.4;
+        music.muted = false; // bỏ muted để có tiếng
+        music.load();
+
+        music.play().then(() => {
+            musicStarted = true;
+            musicBtn.classList.add('playing');
+        }).catch(() => {
+            console.log("Chờ click để phát nhạc...");
+        });
+    }
+
+    // Click nút để bật/tắt nhạc
+    musicBtn.addEventListener('click', (e) => {
+        e.stopPropagation(); // tránh ảnh hưởng click toàn trang
+
+        if (!musicStarted) {
+            playSong(currentSong);
+        } else {
+            if (music.paused) {
+                music.play();
+                musicBtn.classList.add('playing');
+            } else {
+                music.pause();
+                musicBtn.classList.remove('playing');
+            }
+        }
+    });
+
+    // Mồi click đầu tiên toàn trang (auto play)
+    document.addEventListener('click', () => {
+        if (!musicStarted) {
+            playSong(currentSong);
+        }
+    }, { once: true });
+
+    // Loop playlist
+    music.addEventListener('ended', () => {
+        currentSong = (currentSong + 1) % playlist.length;
+        playSong(currentSong);
+    });
+
+});
+</script>
+
+
+</body>
+
+</html>
