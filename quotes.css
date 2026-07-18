@@ -8,13 +8,19 @@
     text-decoration: none;
 }
 
-body {
-    /* height: 100vh; */
+html, body {
+    height: 100vh;
     width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+body {
     background: url(./assets/anhnen/z8035702965500_a19bda43b3976839e0c18f00ce24de63.jpg);
     background-repeat: no-repeat;
     background-size: cover;
-     background-position: center; 
+    background-position: center; 
 }
 
 :root {
@@ -98,8 +104,9 @@ body {
     justify-content: center;
     align-items: center;
     width: 90%;
-    height: 50vh;
-    margin-top: -7rem; /* dịch lên trên một chút */
+    height: auto;
+    margin-top: auto;
+    margin-bottom: 2rem; /* cách bottom một chút */
     gap: 3rem;
     position: relative;
 }
