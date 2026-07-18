@@ -26,16 +26,16 @@
                         </div>
                     </a>
                 </div>
-                <h3 class="sp-name">Dear, <span id="spName"></span></h3>
+                <h3 class="sp-name">Dear, <span id="spName">Mai</span></h3>
                 <p id="chosenQuote">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt ratione atque nihil
                     enim? Autem expedita perferendis repellendus totam doloribus. Tenetur adipisci sed quas fugit id,
                     maiores est impedit optio et.</p>
-                <h3 class="fp-name">Yours, <span id="fpName"></span></h3>
+                <h3 class="fp-name">Yours, <span id="fpName">Hà</span></h3>
                 <img src="./assets/rose.png" class="rose" alt="rose">
             </div>
         </div>
         <div class="copyright-container">
-            <h3 class="copyright">Created with ❤️ by <a id="instagramProfileLink" href="#" target="_blank"><span id="instagramProfileName"></span></a></h3>
+            <h3 class="copyright">Created with ❤️ by <a id="instagramProfileLink" href="https://www.instagram.com/ha.cn_?igsh=MTkzM2Q4a3Y1dTdhZg==" target="_blank"><span id="instagramProfileName">Hà</span></a></h3>
         </div>
     </div>
 
@@ -55,10 +55,11 @@
                 case 'hug':
                 case 'kiss':
                 case 'valentine':
+                case 'six-months':
                     cardElement.classList.add(source);
-                    const savedBg = localStorage.getItem("valentineBg");
+                    const savedBg = localStorage.getItem(source === 'six-months' ? "sixMonthsBg" : "valentineBg");
 
-                    if (savedBg && cardElement.classList.contains("valentine")) {
+                    if (savedBg && (cardElement.classList.contains("valentine") || cardElement.classList.contains("six-months"))) {
                     cardElement.style.backgroundImage = `url(${savedBg})`;
                     }
                     break;
@@ -78,6 +79,8 @@
                 document.querySelector(".rose").classList.add("kiss");
             } else if (document.referrer.includes("valentine.html")) {
                 document.querySelector(".rose").classList.add("valentine");
+            } else if (document.referrer.includes("six-months.html")) {
+                document.querySelector(".rose").classList.add("valentine");
             }
         });
 
@@ -92,10 +95,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const musicBtn = document.getElementById('music-btn');
 
     const playlist = [
-        "./assets/Until I Found You.mp3",
-       "./assets/A_Thousand_Years-528635.mp3",
-       "./assets/Perfect.mp3",
-   
+        "./assets/nhac/love-story.mp3",
+        "./assets/nhac/Đức Phúc - Hơn Cả Yêu (Official Music Video).mp3"
     ];
 
     let currentSong = 0;

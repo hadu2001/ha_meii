@@ -31,6 +31,25 @@ Wave svg credits - https://codepen.io/goodkatz/pen/LYPGxQz
   overflow: hidden;
   clip-path: url(#myPath);
   background-image: radial-gradient(#f5c2c7 60%, #ee8daf); /* pink gradient */
+  animation: heartBeat 1.6s infinite ease-in-out;
+  transform-origin: center;
+}
+
+.heart.no-beat {
+  animation: none !important;
+}
+
+@keyframes heartBeat {
+  0% { transform: scale(1); }
+  15% { transform: scale(1.1); }
+  30% { transform: scale(1); }
+  45% { transform: scale(1.1); }
+  70% { transform: scale(1); }
+}
+
+@keyframes bounceLeft {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-10px); }
 }
 
 /* Updated tank: using a darker pink shade */
@@ -71,8 +90,12 @@ Wave svg credits - https://codepen.io/goodkatz/pen/LYPGxQz
   }
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 768px) {
   .heart-wrap {
-    bottom: 7rem;
+    position: relative;
+    bottom: auto;
+    margin: 2rem 0;
+    left: auto;
+    transform: none;
   }
 }
