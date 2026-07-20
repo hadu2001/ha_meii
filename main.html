@@ -31,14 +31,14 @@
                     </div>
                 </div>
             </a>
-            <a href="six-months.html" class="day-link" data-date="2025-08-14">
+            <a href="six-months.html" class="day-link" data-date="2026-07-21">
                 <div class="six-months-day day">
                     <div class="icon">
                         <lord-icon src="https://cdn.lordicon.com/etgnxeer.json" trigger="hover"></lord-icon>
                     </div>
                     <div class="info">
                         <h1 class="day-name">6 Months</h1>
-                        <p class="date">Aug 14</p>
+                        <p class="date">Jul 21</p>
                         <div class="countdown" id="countdown-six-months"></div>
                     </div>
                 </div>
@@ -107,6 +107,33 @@ document.addEventListener('DOMContentLoaded', function () {
         currentSong = (currentSong + 1) % playlist.length;
         playSong(currentSong);
     });
+
+    // Countdown logic
+    function updateCountdown() {
+        const dayLinks = document.querySelectorAll('.day-link');
+        dayLinks.forEach(link => {
+            const dateStr = link.getAttribute('data-date');
+            const countdownDiv = link.querySelector('.countdown');
+            if (!dateStr || !countdownDiv) return;
+
+            const targetDate = new Date(dateStr + 'T00:00:00');
+            const now = new Date();
+            const diff = targetDate - now;
+
+            if (diff <= 0) {
+                countdownDiv.innerHTML = "Đã mở khóa! ❤️";
+            } else {
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                countdownDiv.innerHTML = `Còn ${days} ngày ${hours}h ${minutes}m ${seconds}s`;
+            }
+        });
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
 
 });
 </script>
